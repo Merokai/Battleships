@@ -1,7 +1,6 @@
 package org.ipi.battleships;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Fleet {
@@ -17,13 +16,14 @@ public class Fleet {
         ships.add(destroyer);
 
         // Verify whether each ShipModel exists in the ships set
-        for (ShipModel model : ShipModel.values()) {
-            if (ships.stream().noneMatch((Ship s) -> s.isOfModel(model))) {
-                throw new IllegalArgumentException();
-            }
-        }
+        verifyEveryModelIsPresent();
 
         // Verify whether no ships overlaps another
+        verifyNoShipOverlaps();
+
+    }
+
+    private void verifyNoShipOverlaps() {
         for (int i = 0; i < ships.size(); i++) {
             for (int j = i + 1; j < ships.size(); j++) {
                 if (ships.get(i).isOverlapping(ships.get(j))) {
@@ -31,7 +31,14 @@ public class Fleet {
                 }
             }
         }
+    }
 
+    private void verifyEveryModelIsPresent() {
+        for (ShipModel model : ShipModel.values()) {
+            if (ships.stream().noneMatch((Ship s) -> s.isOfModel(model))) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     public int shipsRemainingCount() {
