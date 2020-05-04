@@ -15,4 +15,8 @@ public class Fleet {
         ships.add(submarine);
         ships.add(destroyer);
     }
+
+    public int shipsRemainingCount() {
+        return ships.size();
+    }
 }
