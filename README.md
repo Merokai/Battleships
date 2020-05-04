@@ -5,7 +5,7 @@
 ## Backlog
 | US | Description | Statut |
 | --------- | ---------- | ----------- |
-| 1 | Je veux pouvoir décrire un bateau par son type, son orientation et sa position. | TODO |
+| 1 | Je veux pouvoir décrire un bateau par son modèle, son orientation et sa position. | TODO |
 | 2 | Je veux pouvoir ajouter un bateau à une flotte. Une flotte doit contenir un bateau de chaque type. | TODO |
 | 3 | Je veux pouvoir jouer contre une flotte à travers une interface console. Le jeu consiste à tirer sur des coordonnées afin de couler la totalité de la flotte. | TODO |
 | 4 | Je veux pouvoir créer une flotte. | TODO |
