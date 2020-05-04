@@ -5,7 +5,9 @@ import java.util.List;
 
 public class Ship {
 
-    private List<Coordinate> coordinates;
+    private final List<Coordinate> coordinates;
+
+    private final ShipModel model;
 
     public Ship(ShipModel model, Coordinate coordinate, Orientation orientation) {
         coordinates = new ArrayList<>();
@@ -15,9 +17,25 @@ public class Ship {
             Coordinate nextPosition = lastPosition.nextPointForOrientation(orientation);
             coordinates.add(nextPosition);
         }
+
+        this.model = model;
     }
 
     public boolean isOnCoordinate(Coordinate c) {
         return coordinates.contains(c);
+    }
+
+    @Override
+    // Any ships with the same 'model' and 'coordinates' values should have the same hashCode
+    public int hashCode() {
+        int hash = 1;
+        hash *= 13 + model.hashCode();
+        hash *= 17 + coordinates.hashCode();
+        return Integer.hashCode(hash);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null && obj.getClass() == Ship.class && ((Ship) obj).hashCode() == hashCode();
     }
 }
