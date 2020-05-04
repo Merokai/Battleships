@@ -1,9 +1,19 @@
 package org.ipi.battleships;
 
 public enum ShipModel {
-    CARRIER,
-    BATTLESHIP,
-    CRUISER,
-    SUBMARINE,
-    DESTROYER;
+    CARRIER(5),
+    BATTLESHIP(4),
+    CRUISER(3),
+    SUBMARINE(3),
+    DESTROYER(2);
+
+    private final int length;
+
+    ShipModel(int length) {
+        this.length = length;
+    }
+
+    public int getLength() {
+        return length;
+    }
 }

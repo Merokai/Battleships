@@ -9,6 +9,27 @@ public class Coordinate {
         this.y = y;
     }
 
+    public Coordinate nextPointForOrientation(Orientation orientation) {
+        int newX = this.x;
+        int newY = this.y;
+
+        switch (orientation) {
+            case NORTH:
+                newY -= 1;
+                break;
+            case SOUTH:
+                newY += 1;
+                break;
+            case EAST:
+                newX += 1;
+                break;
+            case WEST:
+                newX -= 1;
+                break;
+        }
+        return new Coordinate(newX, newY);
+    }
+
     @Override
     public boolean equals(Object obj) {
         return obj != null && obj.getClass() == Coordinate.class && ((Coordinate) obj).hashCode() == hashCode();
