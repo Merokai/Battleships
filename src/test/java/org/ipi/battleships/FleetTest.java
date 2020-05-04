@@ -17,5 +17,7 @@ public class FleetTest {
         Fleet fleet = new Fleet(carrier, battleship, cruiser, submarine, destroyer);
 
         assertEquals(5, fleet.shipsRemainingCount());
+
+        assertThrows(IllegalArgumentException.class, () -> new Fleet(carrier, carrier, carrier, carrier, carrier));
     }
 }

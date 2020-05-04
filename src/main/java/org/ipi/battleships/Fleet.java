@@ -1,7 +1,9 @@
 package org.ipi.battleships;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Fleet {
 
@@ -14,6 +16,13 @@ public class Fleet {
         ships.add(cruiser);
         ships.add(submarine);
         ships.add(destroyer);
+
+        // Verify if each ShipModel exists in the ships set
+        Arrays.stream(ShipModel.values()).forEach((ShipModel model) -> {
+            if (ships.stream().noneMatch((Ship s) -> s.isOfModel(model))) {
+                throw new IllegalArgumentException();
+            }
+        });
     }
 
     public int shipsRemainingCount() {

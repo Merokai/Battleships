@@ -25,6 +25,10 @@ public class Ship {
         return coordinates.contains(c);
     }
 
+    public boolean isOfModel(ShipModel model) {
+        return this.model.equals(model);
+    }
+
     @Override
     // Any ships with the same 'model' and 'coordinates' values should have the same hashCode
     public int hashCode() {
