@@ -19,5 +19,9 @@ public class FleetTest {
         assertEquals(5, fleet.shipsRemainingCount());
 
         assertThrows(IllegalArgumentException.class, () -> new Fleet(carrier, carrier, carrier, carrier, carrier));
+
+        Ship overlappingCarrier = new Ship(ShipModel.CARRIER, new Coordinate(2, 2), Orientation.SOUTH);
+
+        assertThrows(IllegalArgumentException.class, () -> new Fleet(overlappingCarrier, battleship, cruiser, submarine, destroyer));
     }
 }

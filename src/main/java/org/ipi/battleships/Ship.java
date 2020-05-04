@@ -42,4 +42,8 @@ public class Ship {
     public boolean equals(Object obj) {
         return obj != null && obj.getClass() == Ship.class && ((Ship) obj).hashCode() == hashCode();
     }
+
+    public boolean isOverlapping(Ship ship) {
+        return coordinates.stream().anyMatch(ship::isOnCoordinate);
+    }
 }
