@@ -9,6 +9,7 @@ public class Coordinate {
         this.y = y;
     }
 
+    // Compute the coordinate of the next point given an orientation
     public Coordinate nextPointForOrientation(Orientation orientation) {
         int newX = this.x;
         int newY = this.y;
@@ -31,11 +32,13 @@ public class Coordinate {
     }
 
     @Override
+    // Any coordinates with the same hashCode are equals
     public boolean equals(Object obj) {
         return obj != null && obj.getClass() == Coordinate.class && ((Coordinate) obj).hashCode() == hashCode();
     }
 
     @Override
+    // Any coordinates with the same 'x' and 'y' values should have the same hashCode
     public int hashCode() {
         int hash = 1;
         hash *= 13 + x;
