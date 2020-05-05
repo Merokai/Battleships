@@ -16,6 +16,7 @@ public class GameTest {
 
         Fleet fleet = new Fleet(carrier, battleship, cruiser, submarine, destroyer);
 
+        Player consolePlayer = new ConsolePlayer("Antoine");
         Game game = new Game(fleet);
     }
 }
