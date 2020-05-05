@@ -1,8 +1,13 @@
 package org.ipi.battleships;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ConsolePlayer implements Player {
     private final String name;
@@ -19,10 +24,10 @@ public class ConsolePlayer implements Player {
         this(name, in, System.out);
     }
 
-    public ConsolePlayer(String name, InputStream in, PrintStream out) {
+    public ConsolePlayer(String name, InputStream in, OutputStream out) {
         this.name = name;
         this.in = new Scanner(in);
-        this.out = out;
+        this.out = new PrintStream(out);
     }
 
     @Override
@@ -32,9 +37,10 @@ public class ConsolePlayer implements Player {
     }
 
     private Coordinate parseCoordinate() {
-        int x = in.nextInt();
-        int y = in.nextInt();
-        in.nextLine();
-        return new Coordinate(x, y);
+        List<Integer> values = Arrays.stream(in.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
+        if (values.size() != 2) {
+            throw new InputMismatchException();
+        }
+        return new Coordinate(values.get(0), values.get(1));
     }
 }

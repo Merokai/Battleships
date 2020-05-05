@@ -45,4 +45,9 @@ public class Coordinate {
         hash *= 17 + y;
         return Integer.hashCode(hash);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Coordinate: {x: %d, y: %d}", x, y);
+    }
 }

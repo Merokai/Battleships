@@ -4,13 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.InputMismatchException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ConsolePlayerTest {
 
     @Test
-    void consolePlayerTests() {
+    void consolePlayerInputTests() {
         Ship carrier = new Ship(ShipModel.CARRIER, new Coordinate(1, 2), Orientation.SOUTH);
         Ship battleship = new Ship(ShipModel.BATTLESHIP, new Coordinate(2, 2), Orientation.SOUTH);
         Ship cruiser = new Ship(ShipModel.CRUISER, new Coordinate(3, 2), Orientation.SOUTH);
@@ -22,25 +24,25 @@ public class ConsolePlayerTest {
         // Mocking user input
         InputStream fakeUserInput = new ByteArrayInputStream(
                 (
-                        "1 2\n" + // Hit
-                                "1 3\n" + // Hit
-                                "1 4\n" + // Hit
-                                "1 5\n" + // Hit
-                                "1 5\n" + // Miss (re-hit)
-                                "1 6\n" + // Sink
-                                "1 7\n"
+                        "1 2\n" + // OK
+                                "a 3\n" + // NOK
+                                "1 d\n" + // NOK
+                                "% 5\n" + // NOK
+                                "5\n" + // NOK
+                                "\n" + // NOK
+                                "3 5\n" // OK
                 ).getBytes());
 
         // Instantiating console player with mocked InputStream
-        Player consolePlayer = new ConsolePlayer("Antoine", fakeUserInput);
+        Player consolePlayer = new ConsolePlayer("Dear fake player", fakeUserInput);
 
 
-        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(consolePlayer.requestShootCoordinate()));
-        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(consolePlayer.requestShootCoordinate()));
-        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(consolePlayer.requestShootCoordinate()));
-        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(consolePlayer.requestShootCoordinate()));
-        assertEquals(ShootResult.MISSED, fleet.shootAtCoordinate(consolePlayer.requestShootCoordinate()));
-        assertEquals(ShootResult.SANK, fleet.shootAtCoordinate(consolePlayer.requestShootCoordinate()));
+        assertEquals(new Coordinate(1, 2), consolePlayer.requestShootCoordinate());
+        assertThrows(NumberFormatException.class, consolePlayer::requestShootCoordinate);
+        assertThrows(NumberFormatException.class, consolePlayer::requestShootCoordinate);
+        assertThrows(NumberFormatException.class, consolePlayer::requestShootCoordinate);
+        assertThrows(InputMismatchException.class, consolePlayer::requestShootCoordinate);
+        assertThrows(NumberFormatException.class, consolePlayer::requestShootCoordinate);
+        assertEquals(new Coordinate(3, 5), consolePlayer.requestShootCoordinate());
     }
-
 }
