@@ -42,7 +42,7 @@ public class Fleet {
     }
 
     public int shipsRemainingCount() {
-        return ships.size();
+        return (int) ships.stream().filter(Ship::isNotSank).count();
     }
 
     public ShotResult shootAtCoordinate(Coordinate c) {
