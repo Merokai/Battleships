@@ -32,7 +32,13 @@ public class ConsolePlayer implements Player {
 
     @Override
     public Coordinate requestShootCoordinate() {
-        out.println(String.format("%s, it is your turn. Please enter coordinates to shoot at. [ Expected format: <x> <y>]", name));
+        out.println(String.format("%s, it's your turn. Please enter coordinates to shoot at. [ Expected format: <x> <y>]", name));
+        return parseCoordinate();
+    }
+
+    @Override
+    public Coordinate requestShootCoordinate(ShotResult lastShotResult) {
+        out.println(String.format("%s, it's your turn. Your previous shot %s. Please enter coordinates to shoot at. [ Expected format: <x> <y>]", name, lastShotResult.toString()));
         return parseCoordinate();
     }
 

@@ -52,7 +52,7 @@ public class Ship {
         return coordinates.stream().anyMatch(ship::isOnCoordinate);
     }
 
-    public ShootResult hit(Coordinate c) {
+    public ShotResult hit(Coordinate c) {
         // Does the coordinate belong to the ship?
         if (isOnCoordinate(c)) {
             // Has not already been hit at this coordinate?
@@ -61,11 +61,11 @@ public class Ship {
 
                 // Was the last coordinate to hit to sink the ship?
                 if (hitCoordinates.size() == coordinates.size()) {
-                    return ShootResult.SANK;
+                    return ShotResult.SANK;
                 }
-                return ShootResult.HIT;
+                return ShotResult.HIT;
             }
         }
-        return ShootResult.MISSED;
+        return ShotResult.MISSED;
     }
 }

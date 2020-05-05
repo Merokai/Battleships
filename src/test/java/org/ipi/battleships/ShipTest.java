@@ -25,18 +25,18 @@ public class ShipTest {
         Ship ship = new Ship(ShipModel.CARRIER, new Coordinate(2, 3), Orientation.EAST);
 
         // Miss (ship is not at coordinate)
-        assertEquals(ShootResult.MISSED, ship.hit( new Coordinate(1, 3)));
+        assertEquals(ShotResult.MISSED, ship.hit( new Coordinate(1, 3)));
 
         // Hit
-        assertEquals(ShootResult.HIT, ship.hit( new Coordinate(2, 3)));
-        assertEquals(ShootResult.HIT, ship.hit( new Coordinate(3, 3)));
-        assertEquals(ShootResult.HIT, ship.hit( new Coordinate(4, 3)));
-        assertEquals(ShootResult.HIT, ship.hit( new Coordinate(5, 3)));
+        assertEquals(ShotResult.HIT, ship.hit( new Coordinate(2, 3)));
+        assertEquals(ShotResult.HIT, ship.hit( new Coordinate(3, 3)));
+        assertEquals(ShotResult.HIT, ship.hit( new Coordinate(4, 3)));
+        assertEquals(ShotResult.HIT, ship.hit( new Coordinate(5, 3)));
 
         // Miss (coordinate as already been hit)
-        assertEquals(ShootResult.MISSED, ship.hit( new Coordinate(5, 3)));
+        assertEquals(ShotResult.MISSED, ship.hit( new Coordinate(5, 3)));
 
         // Sink
-        assertEquals(ShootResult.SANK, ship.hit( new Coordinate(6, 3)));
+        assertEquals(ShotResult.SANK, ship.hit( new Coordinate(6, 3)));
     }
 }

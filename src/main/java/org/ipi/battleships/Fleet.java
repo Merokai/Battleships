@@ -45,13 +45,13 @@ public class Fleet {
         return ships.size();
     }
 
-    public ShootResult shootAtCoordinate(Coordinate c) {
+    public ShotResult shootAtCoordinate(Coordinate c) {
         for (Ship s : ships) {
-            ShootResult result = s.hit(c);
-            if (result != ShootResult.MISSED) {
+            ShotResult result = s.hit(c);
+            if (result != ShotResult.MISSED) {
                 return result;
             }
         }
-        return ShootResult.MISSED;
+        return ShotResult.MISSED;
     }
 }

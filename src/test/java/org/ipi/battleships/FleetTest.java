@@ -35,12 +35,12 @@ public class FleetTest {
 
         Fleet fleet = new Fleet(carrier, battleship, cruiser, submarine, destroyer);
 
-        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(new Coordinate(1, 2)));
-        assertEquals(ShootResult.MISSED, fleet.shootAtCoordinate(new Coordinate(1, 1)));
+        assertEquals(ShotResult.HIT, fleet.shootAtCoordinate(new Coordinate(1, 2)));
+        assertEquals(ShotResult.MISSED, fleet.shootAtCoordinate(new Coordinate(1, 1)));
 
-        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(new Coordinate(4, 2)));
-        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(new Coordinate(4, 3)));
-        assertEquals(ShootResult.SANK, fleet.shootAtCoordinate(new Coordinate(4, 4)));
+        assertEquals(ShotResult.HIT, fleet.shootAtCoordinate(new Coordinate(4, 2)));
+        assertEquals(ShotResult.HIT, fleet.shootAtCoordinate(new Coordinate(4, 3)));
+        assertEquals(ShotResult.SANK, fleet.shootAtCoordinate(new Coordinate(4, 4)));
 
     }
 }
