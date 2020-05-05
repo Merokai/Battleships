@@ -46,8 +46,11 @@ public class Fleet {
     }
 
     public ShootResult shootAtCoordinate(Coordinate c) {
-        if (ships.stream().anyMatch(s -> s.isOnCoordinate(c))) {
-            return ShootResult.HIT;
+        for (Ship s : ships) {
+            ShootResult result = s.hit(c);
+            if (result != ShootResult.MISSED) {
+                return result;
+            }
         }
         return ShootResult.MISSED;
     }

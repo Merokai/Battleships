@@ -37,5 +37,10 @@ public class FleetTest {
 
         assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(new Coordinate(1, 2)));
         assertEquals(ShootResult.MISSED, fleet.shootAtCoordinate(new Coordinate(1, 1)));
+
+        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(new Coordinate(4, 2)));
+        assertEquals(ShootResult.HIT, fleet.shootAtCoordinate(new Coordinate(4, 3)));
+        assertEquals(ShootResult.SANK, fleet.shootAtCoordinate(new Coordinate(4, 4)));
+
     }
 }
