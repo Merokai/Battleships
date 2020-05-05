@@ -68,4 +68,8 @@ public class Ship {
         }
         return ShotResult.MISSED;
     }
+
+    public boolean isNotSank() {
+        return hitCoordinates.size() < coordinates.size();
+    }
 }
