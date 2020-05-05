@@ -1,5 +1,13 @@
 package org.ipi.battleships;
 
+import org.ipi.battleships.core.Game;
+import org.ipi.battleships.core.entities.Coordinate;
+import org.ipi.battleships.core.entities.Fleet;
+import org.ipi.battleships.core.enums.Orientation;
+import org.ipi.battleships.core.enums.ShipModel;
+import org.ipi.battleships.core.player.DummyAI;
+import org.ipi.battleships.core.player.Player;
+import org.ipi.battleships.core.entities.Ship;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

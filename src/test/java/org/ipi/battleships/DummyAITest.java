@@ -1,5 +1,8 @@
 package org.ipi.battleships;
 
+import org.ipi.battleships.core.entities.Coordinate;
+import org.ipi.battleships.core.player.DummyAI;
+import org.ipi.battleships.core.player.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

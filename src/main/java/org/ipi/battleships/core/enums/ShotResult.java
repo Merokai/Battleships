@@ -1,4 +1,4 @@
-package org.ipi.battleships;
+package org.ipi.battleships.core.enums;
 
 public enum ShotResult {
     MISSED("missed"),

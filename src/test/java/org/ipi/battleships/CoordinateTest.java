@@ -1,5 +1,6 @@
 package org.ipi.battleships;
 
+import org.ipi.battleships.core.entities.Coordinate;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

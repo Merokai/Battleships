@@ -1,5 +1,10 @@
 package org.ipi.battleships;
 
+import org.ipi.battleships.core.entities.Coordinate;
+import org.ipi.battleships.core.entities.Ship;
+import org.ipi.battleships.core.enums.Orientation;
+import org.ipi.battleships.core.enums.ShipModel;
+import org.ipi.battleships.core.enums.ShotResult;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

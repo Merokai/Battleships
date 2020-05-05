@@ -1,4 +1,8 @@
-package org.ipi.battleships;
+package org.ipi.battleships.core;
+
+import org.ipi.battleships.core.entities.Fleet;
+import org.ipi.battleships.core.enums.ShotResult;
+import org.ipi.battleships.core.player.Player;
 
 public class Game {
 

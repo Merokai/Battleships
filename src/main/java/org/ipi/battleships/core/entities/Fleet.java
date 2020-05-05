@@ -1,4 +1,7 @@
-package org.ipi.battleships;
+package org.ipi.battleships.core.entities;
+
+import org.ipi.battleships.core.enums.ShipModel;
+import org.ipi.battleships.core.enums.ShotResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,5 +56,17 @@ public class Fleet {
             }
         }
         return ShotResult.MISSED;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 1;
+        hash *= 13 + ships.hashCode();
+        return Integer.hashCode(hash);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null && obj.getClass() == Fleet.class && obj.hashCode() == this.hashCode();
     }
 }

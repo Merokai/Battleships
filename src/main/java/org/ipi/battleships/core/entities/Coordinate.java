@@ -1,4 +1,6 @@
-package org.ipi.battleships;
+package org.ipi.battleships.core.entities;
+
+import org.ipi.battleships.core.enums.Orientation;
 
 public class Coordinate {
     private final int x;

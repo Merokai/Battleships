@@ -1,5 +1,9 @@
-package org.ipi.battleships;
+package org.ipi.battleships.core.entities;
 
+
+import org.ipi.battleships.core.enums.Orientation;
+import org.ipi.battleships.core.enums.ShipModel;
+import org.ipi.battleships.core.enums.ShotResult;
 
 import java.util.ArrayList;
 import java.util.HashSet;
