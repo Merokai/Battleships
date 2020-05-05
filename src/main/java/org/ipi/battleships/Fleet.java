@@ -44,4 +44,11 @@ public class Fleet {
     public int shipsRemainingCount() {
         return ships.size();
     }
+
+    public ShootResult shootAtCoordinate(Coordinate c) {
+        if (ships.stream().anyMatch(s -> s.isOnCoordinate(c))) {
+            return ShootResult.HIT;
+        }
+        return ShootResult.MISSED;
+    }
 }
