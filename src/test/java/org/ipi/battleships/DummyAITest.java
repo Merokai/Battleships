@@ -9,30 +9,31 @@ import org.junit.jupiter.api.Test;
 public class DummyAITest {
 
     @Test
-    void dummyAITests(){
+    void dummyAITests() {
 
         Player dummyAI = new DummyAI();
-        // First coordinate should be (1, 1)
-        Assertions.assertEquals(new Coordinate(1, 1), dummyAI.requestShootCoordinate());
-
-        // Spoiling 8 coordinates
-        for(int i=0;i<8;i++){
-            dummyAI.requestShootCoordinate();
+        for (int i = 1; i <= 100; i++) {
+            switch (i) {
+                case 1:
+                    // First coordinate should be (1, 1)
+                    Assertions.assertEquals(new Coordinate(1, 1), dummyAI.requestShootCoordinate());
+                    break;
+                case 10:
+                    // Tenth coordinate should be (10, 1)
+                    Assertions.assertEquals(new Coordinate(10, 1), dummyAI.requestShootCoordinate());
+                    break;
+                case 11:
+                    // Eleventh coordinate should be (1, 2)
+                    Assertions.assertEquals(new Coordinate(1, 2), dummyAI.requestShootCoordinate());
+                    break;
+                case 100:
+                    // Hundredth coordinate should be (10, 10)
+                    Assertions.assertEquals(new Coordinate(10, 10), dummyAI.requestShootCoordinate());
+                    break;
+                default:
+                    dummyAI.requestShootCoordinate();
+                    break;
+            }
         }
-        // Tenth coordinate should be (10, 1)
-        Assertions.assertEquals(new Coordinate(10, 1), dummyAI.requestShootCoordinate());
-        // Eleventh coordinate should be (1, 2)
-        Assertions.assertEquals(new Coordinate(1, 2), dummyAI.requestShootCoordinate());
-
-        // Spoiling 88 coordinates
-        for(int i=0;i<88;i++){
-            dummyAI.requestShootCoordinate();
-        }
-        // Hundredth coordinate should be (10, 10)
-        Assertions.assertEquals(new Coordinate(10, 10), dummyAI.requestShootCoordinate());
-
-
-
-
     }
 }

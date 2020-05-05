@@ -8,7 +8,7 @@ import org.ipi.battleships.core.enums.ShipModel;
 import org.ipi.battleships.core.enums.ShotResult;
 
 public class DummyAI implements Player {
-    // Dummiest AI ever: Just try every coordinates in a [1-10] grid
+    // Dumbest AI ever: Just try every coordinates in a [1-10] grid
     private int coordinate = 0;
 
     @Override

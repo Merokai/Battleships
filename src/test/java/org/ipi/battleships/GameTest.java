@@ -17,7 +17,7 @@ public class GameTest {
         Game game = new Game(dummyPlayer);
         assertEquals(0, game.getShotCount());
         game.play();
-        // Last position shot by the dummy AI shoud be (1, 6)
+        // Last position shot by the dummy AI should be (1, 6)
         assertEquals(51, game.getShotCount());
     }
 }

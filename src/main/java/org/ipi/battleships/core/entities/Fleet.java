@@ -5,6 +5,7 @@ import org.ipi.battleships.core.enums.ShotResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Fleet {
 
@@ -38,14 +39,14 @@ public class Fleet {
 
     private void verifyEveryModelIsPresent() {
         for (ShipModel model : ShipModel.values()) {
-            if (ships.stream().noneMatch((Ship s) -> s.isOfModel(model))) {
+            if (ships.stream().map(Ship::getModel).collect(Collectors.toSet()).size() != 5) {
                 throw new IllegalArgumentException();
             }
         }
     }
 
     public int shipsRemainingCount() {
-        return (int) ships.stream().filter(Ship::isNotSank).count();
+        return (int) ships.stream().filter(s -> !s.sank()).count();
     }
 
     public ShotResult shootAtCoordinate(Coordinate c) {

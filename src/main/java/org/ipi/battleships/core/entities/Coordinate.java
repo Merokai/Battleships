@@ -36,7 +36,7 @@ public class Coordinate {
     @Override
     // Any coordinates with the same hashCode are equals
     public boolean equals(Object obj) {
-        return obj != null && obj.getClass() == Coordinate.class && ((Coordinate) obj).hashCode() == hashCode();
+        return obj != null && obj.getClass() == Coordinate.class && obj.hashCode() == hashCode();
     }
 
     @Override

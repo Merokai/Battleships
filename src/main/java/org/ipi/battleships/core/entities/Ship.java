@@ -3,39 +3,31 @@ package org.ipi.battleships.core.entities;
 
 import org.ipi.battleships.core.enums.Orientation;
 import org.ipi.battleships.core.enums.ShipModel;
+import org.ipi.battleships.core.enums.ShipPosition;
 import org.ipi.battleships.core.enums.ShotResult;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Ship {
 
-    private final List<Coordinate> coordinates;
+    private final Map<Coordinate, ShipPosition> shipPositions;
 
     private final ShipModel model;
-    private Set<Coordinate> hitCoordinates;
 
     public Ship(ShipModel model, Coordinate coordinate, Orientation orientation) {
-        coordinates = new ArrayList<>();
-        coordinates.add(coordinate);
-        while (coordinates.size() < model.getLength()) {
-            Coordinate lastPosition = coordinates.get(coordinates.size() - 1);
-            Coordinate nextPosition = lastPosition.nextPointForOrientation(orientation);
-            coordinates.add(nextPosition);
-        }
-
+        shipPositions = initializePositions(model, coordinate, orientation);
         this.model = model;
-        this.hitCoordinates = new HashSet<>();
+    }
+
+    public ShipModel getModel() {
+        return model;
     }
 
     public boolean isOnCoordinate(Coordinate c) {
-        return coordinates.contains(c);
-    }
-
-    public boolean isOfModel(ShipModel model) {
-        return this.model.equals(model);
+        return shipPositions.containsKey(c);
     }
 
     @Override
@@ -43,37 +35,47 @@ public class Ship {
     public int hashCode() {
         int hash = 1;
         hash *= 13 + model.hashCode();
-        hash *= 17 + coordinates.hashCode();
+        hash *= 17 + shipPositions.hashCode();
         return Integer.hashCode(hash);
     }
 
     @Override
     public boolean equals(Object obj) {
-        return obj != null && obj.getClass() == Ship.class && ((Ship) obj).hashCode() == hashCode();
+        return obj != null && obj.getClass() == Ship.class && obj.hashCode() == hashCode();
     }
 
     public boolean isOverlapping(Ship ship) {
-        return coordinates.stream().anyMatch(ship::isOnCoordinate);
+        return shipPositions.keySet().stream().anyMatch(ship::isOnCoordinate);
     }
 
     public ShotResult hit(Coordinate c) {
         // Does the coordinate belong to the ship?
-        if (isOnCoordinate(c)) {
-            // Has not already been hit at this coordinate?
-            if (!hitCoordinates.contains(c)) {
-                hitCoordinates.add(c);
-
-                // Was the last coordinate to hit to sink the ship?
-                if (hitCoordinates.size() == coordinates.size()) {
-                    return ShotResult.SANK;
-                }
-                return ShotResult.HIT;
-            }
+        if (!isOnCoordinate(c)) {
+            return ShotResult.MISSED;
         }
-        return ShotResult.MISSED;
+
+        // Has already been hit?
+        if (shipPositions.get(c).equals(ShipPosition.HIT)) {
+            return ShotResult.MISSED;
+        }
+
+        shipPositions.put(c, ShipPosition.HIT);
+        return sank() ? ShotResult.SANK : ShotResult.HIT;
     }
 
-    public boolean isNotSank() {
-        return hitCoordinates.size() < coordinates.size();
+    public boolean sank() {
+        // If no position is undamaged, then the ship sank
+        return shipPositions.values().stream().noneMatch(p -> p.equals(ShipPosition.UNDAMAGED));
+    }
+
+    private Map<Coordinate, ShipPosition> initializePositions(ShipModel model, Coordinate coordinate, Orientation orientation) {
+        List<Coordinate> coordinates = new ArrayList<>();
+        coordinates.add(coordinate);
+        while (coordinates.size() < model.getLength()) {
+            Coordinate lastPosition = coordinates.get(coordinates.size() - 1);
+            Coordinate nextPosition = lastPosition.nextPointForOrientation(orientation);
+            coordinates.add(nextPosition);
+        }
+        return coordinates.stream().collect(Collectors.toMap(c -> c, b -> ShipPosition.UNDAMAGED));
     }
 }

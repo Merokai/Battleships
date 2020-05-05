@@ -48,14 +48,14 @@ public class ShipTest {
     void isNotSankTest() {
         Ship ship = new Ship(ShipModel.CARRIER, new Coordinate(2, 3), Orientation.EAST);
         ship.hit(new Coordinate(2, 3));
-        assertTrue(ship.isNotSank());
+        assertFalse(ship.sank());
         ship.hit(new Coordinate(3, 3));
-        assertTrue(ship.isNotSank());
+        assertFalse(ship.sank());
         ship.hit(new Coordinate(4, 3));
-        assertTrue(ship.isNotSank());
+        assertFalse(ship.sank());
         ship.hit(new Coordinate(5, 3));
-        assertTrue(ship.isNotSank());
+        assertFalse(ship.sank());
         ship.hit(new Coordinate(6, 3));
-        assertFalse(ship.isNotSank());
+        assertTrue(ship.sank());
     }
 }

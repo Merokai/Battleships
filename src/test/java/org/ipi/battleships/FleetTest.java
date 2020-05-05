@@ -51,7 +51,8 @@ public class FleetTest {
 
     }
 
-    @Test void shipsRemainingTests(){
+    @Test
+    void shipsRemainingTests() {
         Ship carrier = new Ship(ShipModel.CARRIER, new Coordinate(1, 2), Orientation.SOUTH);
         Ship battleship = new Ship(ShipModel.BATTLESHIP, new Coordinate(2, 2), Orientation.SOUTH);
         Ship cruiser = new Ship(ShipModel.CRUISER, new Coordinate(3, 2), Orientation.SOUTH);
