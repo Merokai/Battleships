@@ -1,13 +1,17 @@
 package org.ipi.battleships;
 
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Ship {
 
     private final List<Coordinate> coordinates;
 
     private final ShipModel model;
+    private Set<Coordinate> hitCoordinates;
 
     public Ship(ShipModel model, Coordinate coordinate, Orientation orientation) {
         coordinates = new ArrayList<>();
@@ -19,6 +23,7 @@ public class Ship {
         }
 
         this.model = model;
+        this.hitCoordinates = new HashSet<>();
     }
 
     public boolean isOnCoordinate(Coordinate c) {
@@ -45,5 +50,22 @@ public class Ship {
 
     public boolean isOverlapping(Ship ship) {
         return coordinates.stream().anyMatch(ship::isOnCoordinate);
+    }
+
+    public ShootResult hit(Coordinate c) {
+        // Does the coordinate belong to the ship?
+        if (isOnCoordinate(c)) {
+            // Has not already been hit at this coordinate?
+            if (!hitCoordinates.contains(c)) {
+                hitCoordinates.add(c);
+
+                // Was the last coordinate to hit to sink the ship?
+                if (hitCoordinates.size() == coordinates.size()) {
+                    return ShootResult.SANK;
+                }
+                return ShootResult.HIT;
+            }
+        }
+        return ShootResult.MISSED;
     }
 }
