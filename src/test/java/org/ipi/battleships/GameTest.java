@@ -2,9 +2,10 @@ package org.ipi.battleships;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameTest {
+
 
     @Test
     void gameTests() {
@@ -16,7 +17,11 @@ public class GameTest {
 
         Fleet fleet = new Fleet(carrier, battleship, cruiser, submarine, destroyer);
 
-        Player consolePlayer = new ConsolePlayer("Antoine");
-        Game game = new Game(fleet);
+        Player dummyPlayer = new DummyAI();
+        Game game = new Game(fleet, dummyPlayer);
+        assertEquals(0, game.getShotCount());
+        game.play();
+        // Last position shot by the dummy AI shoud be (1, 6)
+        assertEquals(51, game.getShotCount());
     }
 }

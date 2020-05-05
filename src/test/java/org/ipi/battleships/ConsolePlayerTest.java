@@ -9,7 +9,8 @@ import java.io.OutputStream;
 import java.util.InputMismatchException;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ConsolePlayerTest {
 
