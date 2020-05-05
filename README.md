@@ -10,7 +10,9 @@
 | 3 | Je veux pouvoir jouer contre une flotte à travers une interface console. Le jeu consiste à tirer sur des coordonnées afin de couler la totalité de la flotte. | WIP |
 | 3.1 | Je veux pouvoir tirer sur la flotte adverse et savoir si j'ai manqué ou touché un bateau | DONE |
 | 3.2 | Je veux savoir si j'ai coulé un bateau lorsque j'ai touché sa dernière position | DONE |
-| 3.3 | Je veux gagner la partie lorsque j'ai coulé le dernier bateau de la flotte adverse | TODO |
+| 3.3 | Je veux gagner la partie lorsque j'ai coulé le dernier bateau de la flotte adverse | WIP |
+| 3.3.1 | Je veux pouvoir tirer sur la flotte adverse en console et obtenir le résultat de mon tir | WIP |
+| 3.3.2 | Je veux que la partie se termine lorsque j'ai coulé le dernier bateau de la flotte | TODO |
 | 4 | Je veux pouvoir créer une flotte. | TODO |
 | 5 | Je veux pouvoir jouer contre la flotte d'un autre joueur, le premier ayant coulé la flotte de l'adversaire étant le vainceur. | TODO |
 | 6 | Je veux pouvoir jouer contre une IA. | TODO |
