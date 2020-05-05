@@ -21,7 +21,7 @@ public class Application {
 
         Fleet fleet = new Fleet(carrier, battleship, cruiser, submarine, destroyer);
 
-        Game game = new Game(fleet, player);
+        Game game = new Game(player);
         game.play();
     }
 

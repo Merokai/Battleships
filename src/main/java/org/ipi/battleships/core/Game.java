@@ -11,15 +11,15 @@ public class Game {
 
     private int shots = 0;
 
-    public Game(Fleet fleet, Player player) {
-        this.fleet = fleet;
+    public Game(Player player) {
+        this.fleet = player.requestFleet();
         this.player = player;
     }
 
     public void play() {
         ShotResult lastShot = fleet.shootAtCoordinate(player.requestShootCoordinate());
         shots++;
-        while(fleet.shipsRemainingCount() > 0){
+        while (fleet.shipsRemainingCount() > 0) {
             lastShot = fleet.shootAtCoordinate(player.requestShootCoordinate(lastShot));
             shots++;
         }
